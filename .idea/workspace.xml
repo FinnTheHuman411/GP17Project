@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c38b0b5c-513f-4dd7-95db-fce4fee28079" name="Changes" comment="" />
+    <list default="true" id="e36a7722-a027-4af9-873b-2ed3a76acaff" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,36 +15,48 @@
       <ProjectState />
     </projectState>
   </component>
-  <component name="ProjectId" id="2Ne1l9cvm6kBt7xswIt95JCDyp7" />
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2Ne7BytGo5Ni7WPkwLCptbOfMYv" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Gp17projectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="gp17project.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="hkmu.s380f.gp17project.Gp17projectApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c38b0b5c-513f-4dd7-95db-fce4fee28079" name="Changes" comment="" />
-      <created>1680009883825</created>
+      <changelist id="e36a7722-a027-4af9-873b-2ed3a76acaff" name="Changes" comment="" />
+      <created>1680012564446</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1680009883825</updated>
-      <workItem from="1680009886202" duration="448000" />
-      <workItem from="1680010438468" duration="53000" />
+      <updated>1680012564446</updated>
+      <workItem from="1680012566636" duration="159000" />
     </task>
     <servers />
   </component>
