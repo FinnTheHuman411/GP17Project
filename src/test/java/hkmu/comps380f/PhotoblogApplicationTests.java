@@ -1,13 +1,13 @@
-package hkmu.s380f.gp17project;
+package hkmu.comps380f;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Gp17projectApplicationTests {
+class PhotoblogApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }

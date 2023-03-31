@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e36a7722-a027-4af9-873b-2ed3a76acaff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sql/data.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sql/schema.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/webapp/WEB-INF/jsp/list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-    </list>
+    <list default="true" id="52c4500d-7e68-4994-849c-e415f547900b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,7 +23,7 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="gp17project" type="f1a62948:ProjectNode" />
+                <item name="Photoblog" type="f1a62948:ProjectNode" />
               </path>
             </expand>
             <select />
@@ -39,8 +32,12 @@
       </state>
     </system>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jsp File" />
+      </list>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -52,12 +49,8 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectId" id="2Ne7BytGo5Ni7WPkwLCptbOfMYv" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="2Nm3ld3dl4vGI2e2yWRAxbfHYmE" />
   <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
@@ -69,24 +62,33 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/lbens/Documents/GitHub/GP17Project",
+    "last_opened_file_path": "C:/Users/lbens/Desktop/Photoblog/src/main/java/hkmu/comps380f",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "spring.configuration.checksum": "6f2489ae62b22408a743cd9dd142f1b2",
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect": [
-      "GenericSQL"
-    ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lbens\Desktop\Photoblog\src\main\java\hkmu\comps380f" />
+      <recent name="C:\Users\lbens\Desktop\Photoblog\src\main\webapp\WEB-INF\jsp" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lbens\Desktop\Photoblog\src\main\webapp\WEB-INF\jsp" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="hkmu.comps380f.controller" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration name="Gp17projectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="gp17project.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="hkmu.s380f.gp17project.Gp17projectApplication" />
+    <configuration name="PhotoblogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Photoblog.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="hkmu.comps380f.PhotoblogApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -95,13 +97,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e36a7722-a027-4af9-873b-2ed3a76acaff" name="Changes" comment="" />
-      <created>1680012564446</created>
+      <changelist id="52c4500d-7e68-4994-849c-e415f547900b" name="Changes" comment="" />
+      <created>1680255581684</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1680012564446</updated>
-      <workItem from="1680012566636" duration="159000" />
-      <workItem from="1680012783706" duration="3874000" />
+      <updated>1680255581684</updated>
+      <workItem from="1680255582847" duration="1064000" />
     </task>
     <servers />
   </component>
