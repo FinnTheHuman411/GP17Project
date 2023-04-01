@@ -12,6 +12,8 @@ public class PhotoUser {
     private String username;
 
     private String password;
+    private String phone;
+    private String email;
     private String description;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER,
@@ -20,9 +22,11 @@ public class PhotoUser {
 
     public PhotoUser() {}
 
-    public PhotoUser(String username, String password, String[] roles, String description) {
+    public PhotoUser(String username, String password, String[] roles, String phone, String email, String description) {
         this.username = username;
         this.password = "{noop}" + password;
+        this.phone = phone;
+        this.email = email;
         this.description = description;
         for (String role : roles) {
             this.roles.add(new UserRole(this, role));
@@ -60,5 +64,21 @@ public class PhotoUser {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

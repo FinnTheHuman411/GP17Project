@@ -13,7 +13,7 @@ public class ImageController {
     @Resource
     private PhotoService pService;
 
-    @GetMapping("/list")
+    @GetMapping(value = {"", "/list"})
     public String list(ModelMap model) {
         //model.addAttribute("photoDatabase", pService.getPhotos());
         return "list";

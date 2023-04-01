@@ -17,6 +17,9 @@
     <label for="remember-me">Remember me</label><br/><br/>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     <input type="submit" value="Log In"/>
-</form>
+</form><br/>
+If you don't have any accounts:<br/>
+<a href="<c:url value="/user/register" />">Register</a><br/>
+<a href="<c:url value="/photo" />">Return to homepage</a>
 </body>
 </html>
