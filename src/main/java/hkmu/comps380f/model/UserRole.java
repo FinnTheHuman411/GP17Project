@@ -17,12 +17,12 @@ public class UserRole {
 
     @ManyToOne
     @JoinColumn(name = "username")
-    private PhotoUser user;
+    private ImageUser user;
 
     public UserRole() {
     }
 
-    public UserRole(PhotoUser user, String role) {
+    public UserRole(ImageUser user, String role) {
         this.user = user;
         this.role = role;
     }
@@ -52,11 +52,11 @@ public class UserRole {
         this.role = role;
     }
 
-    public PhotoUser getUser() {
+    public ImageUser getUser() {
         return user;
     }
 
-    public void setUser(PhotoUser user) {
+    public void setUser(ImageUser user) {
         this.user = user;
     }
 }

@@ -1,11 +1,11 @@
 package hkmu.comps380f.controller;
 
 
+import hkmu.comps380f.dao.PhotoService;
 import hkmu.comps380f.dao.UserManagementService;
 import hkmu.comps380f.exception.UserNotFound;
-import hkmu.comps380f.model.PhotoUser;
+import hkmu.comps380f.model.ImageUser;
 import jakarta.annotation.Resource;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,6 +19,8 @@ import java.io.IOException;
 public class UserManagementController {
     @Resource
     UserManagementService umService;
+    @Resource
+    PhotoService pService;
 
     @GetMapping({"", "/", "/list"})
     public String list(ModelMap model) {
@@ -86,7 +88,7 @@ public class UserManagementController {
 
     @GetMapping("/create")
     public ModelAndView create() {
-        return new ModelAndView("addUser", "photoUser", new Form());
+        return new ModelAndView("addUser", "imageUser", new Form());
     }
 
     @PostMapping("/create")
@@ -98,7 +100,7 @@ public class UserManagementController {
 
     @GetMapping("/register")
     public ModelAndView register() {
-        return new ModelAndView("register", "photoUser", new Form());
+        return new ModelAndView("register", "imageUser", new Form());
     }
 
     @PostMapping("/register")
@@ -121,10 +123,11 @@ public class UserManagementController {
     }
     @GetMapping("/profile/{username}")
     public String view(@PathVariable("username") String username, ModelMap model)
-            throws UserNotFound {
-        PhotoUser user = umService.getPhotoUser(username);
+            throws UserNotFound, IOException {
+        ImageUser user = umService.getPhotoUser(username);
         model.addAttribute("username", username);
         model.addAttribute("user", user);
+        model.addAttribute("photoDatabase", pService.getPhoto(username));
         return "userprofile";
     }
 }

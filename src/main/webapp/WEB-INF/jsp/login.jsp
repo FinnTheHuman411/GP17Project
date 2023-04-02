@@ -20,6 +20,6 @@
 </form><br/>
 If you don't have any accounts:<br/>
 <a href="<c:url value="/user/register" />">Register</a><br/>
-<a href="<c:url value="/photo" />">Return to homepage</a>
+<a href="<c:url value="/image" />">Return to homepage</a>
 </body>
 </html>

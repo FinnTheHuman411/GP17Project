@@ -15,28 +15,28 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http)
             throws Exception {
         http
-            .authorizeHttpRequests(authorize -> authorize
-                //.requestMatchers("/user/**").hasRole("ADMIN")
-                //.requestMatchers("/ticket/delete/**").hasRole("ADMIN")
-                //.requestMatchers("/ticket/**").hasAnyRole("USER", "ADMIN")
-                .anyRequest().permitAll()
-            )
-            .formLogin(form -> form
-                .loginPage("/login")
-                .failureUrl("/login?error")
-                .permitAll()
-            )
-            .logout(logout -> logout
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/photo/list?logout")
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-            )
+                .authorizeHttpRequests(authorize -> authorize
+                        //.requestMatchers("/user/**").hasRole("ADMIN")
+                        //.requestMatchers("/ticket/delete/**").hasRole("ADMIN")
+                        //.requestMatchers("/ticket/**").hasAnyRole("USER", "ADMIN")
+                        .anyRequest().permitAll()
+                )
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .failureUrl("/login?error")
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/photo/list?logout")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                )
                 .rememberMe(remember -> remember
                         .key("uniqueAndSecret")
                         .tokenValiditySeconds(86400)
                 )
-            .httpBasic(withDefaults());
+                .httpBasic(withDefaults());
         return http.build();
     }
 }

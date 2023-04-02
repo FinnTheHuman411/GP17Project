@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.Base64" %>
 <html>
 <head>
     <title>Photoblog</title>
@@ -23,7 +24,7 @@
     <form action="<c:url value="/user/myprofile"/>">
         <input type="submit" value="My Profile" />
     </form>
-    <form action="<c:url value="/photo/upload"/>">
+    <form action="<c:url value="/image/upload"/>">
         <input type="submit" value="Upload" />
     </form>
 </security:authorize>
@@ -39,23 +40,21 @@
 </security:authorize>
 
 <h2>Images</h2>
-
-<c:choose>
-    <c:when test="${fn:length(photoDatabase) == 0}">
-        <i>There are no photo in the system.</i>
-    </c:when>
-    <c:otherwise>
-        <c:forEach items="${photoDatabase}" var="entry">
-                <c:forEach items="${entry.attachments}" var="attachment" varStatus="status">
-                    <c:if test="${status.first}">
-                        <a href="<c:url value="/photo/view/${entry.id}" />">
-                            <img alt="${attachment.name}" src="${attachment.contents}"/>
-                        </a>
-                    </c:if>
-                </c:forEach>
-            <br />
-        </c:forEach>
-    </c:otherwise>
-</c:choose>
+<div>
+    <c:choose>
+        <c:when test="${fn:length(photoDatabase) == 0}">
+            <i>There are no images in the system.</i>
+        </c:when>
+        <c:otherwise>
+            <c:forEach items="${photoDatabase}" var="image">
+                <td>
+                    <a href="<c:url value="/user/profile/${image.username}"></c:url>">
+                        <img src="data:image/png;base64,${fn:escapeXml(Base64.getEncoder().encodeToString(image.data))}" alt="${image.filename}" width="300" height="300"/>
+                    </a>
+                </td>
+            </c:forEach>
+        </c:otherwise>
+    </c:choose>
+</div>
 </body>
 </html>

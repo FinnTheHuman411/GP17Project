@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class PhotoUser {
+public class ImageUser {
     @Id
     private String username;
 
@@ -20,9 +20,9 @@ public class PhotoUser {
             cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserRole> roles = new ArrayList<>();
 
-    public PhotoUser() {}
+    public ImageUser() {}
 
-    public PhotoUser(String username, String password, String[] roles, String phone, String email, String description) {
+    public ImageUser(String username, String password, String[] roles, String phone, String email, String description) {
         this.username = username;
         this.password = "{noop}" + password;
         this.phone = phone;

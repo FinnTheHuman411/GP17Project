@@ -9,7 +9,7 @@
 </form>
 
 <h2>Create a User</h2>
-<form:form method="POST" modelAttribute="photoUser">
+<form:form method="POST" modelAttribute="imageUser">
     <form:label path="username">Username</form:label><br/>
     <form:input type="text" path="username"/><br/><br/>
     <form:label path="password">Password</form:label><br/>

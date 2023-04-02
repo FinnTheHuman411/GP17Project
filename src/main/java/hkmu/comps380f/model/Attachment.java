@@ -28,7 +28,7 @@ public class Attachment {
 
     @ManyToOne
     @JoinColumn(name = "post_id")
-    private Photo photo;
+    private Image image;
 
     // getters and setters of all properties
     public UUID getId() {
@@ -71,12 +71,12 @@ public class Attachment {
         this.photoId = photoId;
     }
 
-    public Photo getPhoto() {
-        return photo;
+    public Image getPhoto() {
+        return image;
     }
 
-    public void setPhoto(Photo photo) {
-        this.photo = photo;
+    public void setPhoto(Image image) {
+        this.image = image;
     }
 }
 

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
     @GetMapping("/")
     public String homepage() {
-        return "redirect:/photo/list";
+        return "redirect:/image/list";
     }
 
     @GetMapping("/login")

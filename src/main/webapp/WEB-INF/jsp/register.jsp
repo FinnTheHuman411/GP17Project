@@ -4,7 +4,7 @@
 <body>
 
 <h2>Register an account</h2>
-<form:form method="POST" modelAttribute="photoUser">
+<form:form method="POST" modelAttribute="imageUser">
     <form:label path="username">Username</form:label><br/>
     <form:input type="text" path="username"/><br/><br/>
     <form:label path="password">Password</form:label><br/>
@@ -17,6 +17,6 @@
     <input type="submit" value="Register"/>
 </form:form><br/>
 <a href="<c:url value="/login" />">Login</a><br/>
-<a href="<c:url value="/photo" />">Return to homepage</a>
+<a href="<c:url value="/image" />">Return to homepage</a>
 </body>
 </html>

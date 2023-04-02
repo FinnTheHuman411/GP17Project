@@ -2,7 +2,7 @@ package hkmu.comps380f.dao;
 
 
 import hkmu.comps380f.exception.UserNotFound;
-import hkmu.comps380f.model.PhotoUser;
+import hkmu.comps380f.model.ImageUser;
 import jakarta.annotation.Resource;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -15,15 +15,18 @@ public class UserManagementService {
     @Resource
     private PhotoUserRepository puRepo;
 
+    @Resource
+    private PhotoRepository pRepo;
+
     @Transactional
-    public List<PhotoUser> getPhotoUsers() {
+    public List<ImageUser> getPhotoUsers() {
         return puRepo.findAll();
     }
 
     @Transactional
-    public PhotoUser getPhotoUser(String name)
+    public ImageUser getPhotoUser(String name)
             throws UserNotFound {
-        PhotoUser user = puRepo.findById(name).orElse(null);
+        ImageUser user = puRepo.findById(name).orElse(null);
         if (user == null) {
             throw new UserNotFound(name);
         }
@@ -32,16 +35,17 @@ public class UserManagementService {
 
     @Transactional
     public void delete(String username) {
-        PhotoUser photoUser = puRepo.findById(username).orElse(null);
-        if (photoUser == null) {
+        ImageUser imageUser = puRepo.findById(username).orElse(null);
+        if (imageUser == null) {
             throw new UsernameNotFoundException("User '" + username + "' not found.");
         }
-        puRepo.delete(photoUser);
+        puRepo.delete(imageUser);
+        pRepo.deleteByUsername(username);
     }
 
     @Transactional
     public void createPhotoUser(String username, String password, String[] roles, String phone, String email, String description) {
-        PhotoUser user = new PhotoUser(username, password, roles, phone, email, description);
+        ImageUser user = new ImageUser(username, password, roles, phone, email, description);
         puRepo.save(user);
     }
 }

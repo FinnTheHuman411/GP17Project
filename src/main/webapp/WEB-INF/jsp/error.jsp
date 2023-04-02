@@ -30,6 +30,6 @@
     <p>${message}</p>
   </c:otherwise>
 </c:choose>
-<a href="<c:url value="/photo" />">Return to homepage</a>
+<a href="<c:url value="/image" />">Return to homepage</a>
 </body>
 </html>
