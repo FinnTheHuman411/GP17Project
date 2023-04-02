@@ -23,6 +23,9 @@
     <form action="<c:url value="/user/myprofile"/>">
         <input type="submit" value="My Profile" />
     </form>
+    <form action="<c:url value="/photo/upload"/>">
+        <input type="submit" value="Upload" />
+    </form>
 </security:authorize>
 
 <security:authorize access="!{hasRole('ADMIN') or hasRole('USER')}" >
@@ -36,5 +39,23 @@
 </security:authorize>
 
 <h2>Images</h2>
+
+<c:choose>
+    <c:when test="${fn:length(photoDatabase) == 0}">
+        <i>There are no photo in the system.</i>
+    </c:when>
+    <c:otherwise>
+        <c:forEach items="${photoDatabase}" var="entry">
+                <c:forEach items="${entry.attachments}" var="attachment" varStatus="status">
+                    <c:if test="${status.first}">
+                        <a href="<c:url value="/photo/view/${entry.id}" />">
+                            <img alt="${attachment.name}" src="${attachment.contents}"/>
+                        </a>
+                    </c:if>
+                </c:forEach>
+            <br />
+        </c:forEach>
+    </c:otherwise>
+</c:choose>
 </body>
 </html>

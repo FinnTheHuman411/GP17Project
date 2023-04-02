@@ -1,35 +1,57 @@
 package hkmu.comps380f.dao;
 
-import hkmu.comps380f.model.PhotoUser;
-import hkmu.comps380f.model.UserRole;
+import hkmu.comps380f.exception.PhotoNotFound;
+import hkmu.comps380f.model.Attachment;
+import hkmu.comps380f.model.Photo;
 import jakarta.annotation.Resource;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @Service
-public class PhotoService implements UserDetailsService {
+public class PhotoService {
     @Resource
-    PhotoUserRepository photoUserRepo;
+    private PhotoRepository pRepo;
 
-    @Override
-    public UserDetails loadUserByUsername(String username)
-            throws UsernameNotFoundException {
-        PhotoUser photoUser = photoUserRepo.findById(username).orElse(null);
-        if (photoUser == null) {
-            throw new UsernameNotFoundException("User '" + username + "' not found.");
+    @Resource
+    private AttachmentRepository aRepo;
+
+    @Transactional
+    public List<Photo> getPhotos() {
+        return pRepo.findAll();
+    }
+
+    @Transactional
+    public List<Attachment> getAttachments() {
+        return aRepo.findAll();
+    }
+
+    @Transactional
+    public long createPhoto(String uploaderName, String title,
+                             String description, List<MultipartFile> attachments)
+            throws IOException {
+        Photo photo = new Photo();
+        photo.setUploaderName(uploaderName);
+        photo.setTitle(title);
+        photo.setDescription(description);
+
+        for (MultipartFile filePart : attachments) {
+            Attachment attachment = new Attachment();
+            attachment.setName(filePart.getOriginalFilename());
+            attachment.setMimeContentType(filePart.getContentType());
+            attachment.setContents(filePart.getBytes());
+            attachment.setPhoto(photo);
+            if (attachment.getName() != null && attachment.getName().length() > 0
+                    && attachment.getContents() != null
+                    && attachment.getContents().length > 0) {
+                photo.getAttachments().add(attachment);
+            }
         }
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        for (UserRole role : photoUser.getRoles()) {
-            authorities.add(new SimpleGrantedAuthority(role.getRole()));
-        }
-        return new User(photoUser.getUsername(), photoUser.getPassword(), authorities);
+        Photo savedPhoto = pRepo.save(photo);
+        return savedPhoto.getId();
     }
 }

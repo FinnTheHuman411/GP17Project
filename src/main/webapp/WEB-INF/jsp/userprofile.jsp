@@ -17,6 +17,9 @@
         <input type="submit" value="Log out" />
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
+    <form action="<c:url value="/photo/upload"/>">
+        <input type="submit" value="Upload" />
+    </form>
 </security:authorize>
 
 <security:authorize access="!{hasRole('ADMIN') or hasRole('USER')}" >

@@ -5,10 +5,21 @@
 </head>
 <body>
 <c:url var="logoutUrl" value="/logout"/>
-<form action="${logoutUrl}" method="post">
-  <input type="submit" value="Log out" />
-  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-</form>
+<security:authorize access="hasRole('ADMIN') or hasRole('USER')" >
+  <form action="${logoutUrl}" method="post">
+    <input type="submit" value="Log out" />
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  </form>
+  <form action="<c:url value="/user/myprofile"/>">
+    <input type="submit" value="My Profile" />
+  </form>
+</security:authorize>
+
+<security:authorize access="!{hasRole('ADMIN') or hasRole('USER')}" >
+  <form action="<c:url value="/login"/>">
+    <input type="submit" value="Login" />
+  </form>
+</security:authorize>
 
 <h2>Error page</h2>
 <c:choose>
