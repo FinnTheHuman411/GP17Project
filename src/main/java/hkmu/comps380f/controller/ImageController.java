@@ -19,10 +19,9 @@ public class ImageController {
     @Resource
     private PhotoService pService;
 
-    @GetMapping(value = {"", "/list"})
-    public String list(ModelMap model) {
-        model.addAttribute("photoDatabase", pService.getPhotos());
-        return "list";
+    @GetMapping("/myprofile")
+    public String myProfile(@CurrentSecurityContext(expression="authentication.name") String username) {
+        return "redirect:/profile/" + username;
     }
 
     @GetMapping("/upload")
@@ -31,6 +30,6 @@ public class ImageController {
     @PostMapping("/upload")
     public String uploadImage(ModelMap model, @RequestParam("image") MultipartFile file, @CurrentSecurityContext(expression="authentication.name") String username) throws IOException {
         pService.createImage(file.getOriginalFilename(), file.getBytes(),username);
-        return "redirect:/image/list";
+        return "redirect:/";
     }
 }

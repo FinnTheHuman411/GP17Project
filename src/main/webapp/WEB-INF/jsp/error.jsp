@@ -10,7 +10,7 @@
     <input type="submit" value="Log out" />
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   </form>
-  <form action="<c:url value="/user/myprofile"/>">
+  <form action="<c:url value="/image/myprofile"/>">
     <input type="submit" value="My Profile" />
   </form>
 </security:authorize>
@@ -30,6 +30,6 @@
     <p>${message}</p>
   </c:otherwise>
 </c:choose>
-<a href="<c:url value="/image" />">Return to homepage</a>
+<a href="<c:url value="/" />">Return to homepage</a>
 </body>
 </html>

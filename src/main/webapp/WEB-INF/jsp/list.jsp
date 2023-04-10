@@ -21,7 +21,7 @@
         <input type="submit" value="Log out" />
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
-    <form action="<c:url value="/user/myprofile"/>">
+    <form action="<c:url value="/image/myprofile"/>">
         <input type="submit" value="My Profile" />
     </form>
     <form action="<c:url value="/image/upload"/>">
@@ -48,7 +48,7 @@
         <c:otherwise>
             <c:forEach items="${photoDatabase}" var="image">
                 <td>
-                    <a href="<c:url value="/user/profile/${image.username}"></c:url>">
+                    <a href="<c:url value="/image/profile/${image.username}"></c:url>">
                         <img src="data:image/png;base64,${fn:escapeXml(Base64.getEncoder().encodeToString(image.data))}" alt="${image.filename}" width="300" height="300"/>
                     </a>
                 </td>

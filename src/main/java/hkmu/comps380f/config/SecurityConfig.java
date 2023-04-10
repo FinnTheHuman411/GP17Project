@@ -16,9 +16,9 @@ public class SecurityConfig {
             throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        //.requestMatchers("/user/**").hasRole("ADMIN")
+                        .requestMatchers("/user/**").hasRole("ADMIN")
                         //.requestMatchers("/ticket/delete/**").hasRole("ADMIN")
-                        //.requestMatchers("/ticket/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/image/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form
@@ -28,7 +28,7 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/photo/list?logout")
+                        .logoutSuccessUrl("/?logout")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                 )

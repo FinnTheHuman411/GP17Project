@@ -98,36 +98,9 @@ public class UserManagementController {
         return "redirect:/user/list";
     }
 
-    @GetMapping("/register")
-    public ModelAndView register() {
-        return new ModelAndView("register", "imageUser", new Form());
-    }
-
-    @PostMapping("/register")
-    public String register(Form form) throws IOException {
-        String[] userRole = {"ROLE_USER"};
-        umService.createPhotoUser(form.getUsername(),
-                form.getPassword(), userRole, form.getPhone(), form.getEmail(), "");
-        return "redirect:/login";
-    }
-
     @GetMapping("/delete/{username}")
     public String deleteTicket(@PathVariable("username") String username) {
         umService.delete(username);
         return "redirect:/user/list";
-    }
-
-    @GetMapping("/myprofile")
-    public String myProfile(@CurrentSecurityContext(expression="authentication.name") String username) {
-            return "redirect:/user/profile/" + username;
-    }
-    @GetMapping("/profile/{username}")
-    public String view(@PathVariable("username") String username, ModelMap model)
-            throws UserNotFound, IOException {
-        ImageUser user = umService.getPhotoUser(username);
-        model.addAttribute("username", username);
-        model.addAttribute("user", user);
-        model.addAttribute("photoDatabase", pService.getPhoto(username));
-        return "userprofile";
     }
 }
