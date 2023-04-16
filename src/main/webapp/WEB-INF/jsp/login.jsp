@@ -19,7 +19,7 @@
     <input type="submit" value="Log In"/>
 </form><br/>
 If you don't have any accounts:<br/>
-<a href="<c:url value="/register" />">Register</a><br/>
+<a href="<c:url value="/user/register" />">Register</a><br/>
 <a href="<c:url value="/" />">Return to homepage</a>
 </body>
 </html>

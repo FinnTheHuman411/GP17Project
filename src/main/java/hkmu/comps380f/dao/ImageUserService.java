@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PhotoUserService implements UserDetailsService {
+public class ImageUserService implements UserDetailsService {
     @Resource
-    PhotoUserRepository photoUserRepo;
+    ImageUserRepository photoUserRepo;
 
     @Override
     public UserDetails loadUserByUsername(String username)

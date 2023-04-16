@@ -1,32 +1,34 @@
 package hkmu.comps380f.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name="image")
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "image_id")
-    private int id;
+    private long id;
+    @Column(name = "username")
+    private String username;
+    private String title;
+    private String description;
 
-    private String filename;
-    private byte[] data;
+    @OneToMany(mappedBy = "image", fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL, orphanRemoval = true)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Attachment> attachments = new ArrayList<>();
 
-    public String getFilename() {
-        return filename;
+    // getters and setters of all properties
+    public long getId() {
+        return id;
     }
 
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
-
-    public byte[] getData() {
-        return data;
-    }
-
-    public void setData(byte[] data) {
-        this.data = data;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -37,15 +39,33 @@ public class Image {
         this.username = username;
     }
 
-    //@Column(insertable = false, updatable = false)
-    private String username;
+    public String getTitle() {
+        return title;
+    }
 
-    public Image(){}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-    public Image(String filename, byte[] data, String username){
-        this.filename = filename;
-        this.data = data;
-        this.username = username;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<Attachment> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<Attachment> attachments) {
+        this.attachments = attachments;
+    }
+
+    public void deleteAttachment(Attachment attachment) {
+        attachment.setPhoto(null);
+        this.attachments.remove(attachment);
     }
 }
 

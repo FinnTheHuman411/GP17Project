@@ -13,10 +13,7 @@ import java.util.List;
 @Service
 public class UserManagementService {
     @Resource
-    private PhotoUserRepository puRepo;
-
-    @Resource
-    private PhotoRepository pRepo;
+    private ImageUserRepository puRepo;
 
     @Transactional
     public List<ImageUser> getPhotoUsers() {
@@ -40,7 +37,6 @@ public class UserManagementService {
             throw new UsernameNotFoundException("User '" + username + "' not found.");
         }
         puRepo.delete(imageUser);
-        pRepo.deleteByUsername(username);
     }
 
     @Transactional

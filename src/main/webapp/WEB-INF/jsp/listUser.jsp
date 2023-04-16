@@ -10,7 +10,7 @@
 
 <br/><br/>
 
-<a href="<c:url value="/image" />">Return to homepage</a>
+<a href="<c:url value="/image" />">Return to list tickets</a>
 
 <h2>Users</h2>
 

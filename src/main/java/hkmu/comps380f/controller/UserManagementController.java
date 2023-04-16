@@ -1,12 +1,9 @@
 package hkmu.comps380f.controller;
 
 
-import hkmu.comps380f.dao.PhotoService;
+import hkmu.comps380f.dao.ImageService;
 import hkmu.comps380f.dao.UserManagementService;
-import hkmu.comps380f.exception.UserNotFound;
-import hkmu.comps380f.model.ImageUser;
 import jakarta.annotation.Resource;
-import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +17,7 @@ public class UserManagementController {
     @Resource
     UserManagementService umService;
     @Resource
-    PhotoService pService;
+    ImageService pService;
 
     @GetMapping({"", "/", "/list"})
     public String list(ModelMap model) {
@@ -88,7 +85,7 @@ public class UserManagementController {
 
     @GetMapping("/create")
     public ModelAndView create() {
-        return new ModelAndView("addUser", "imageUser", new Form());
+        return new ModelAndView("addUser", "photoUser", new Form());
     }
 
     @PostMapping("/create")
@@ -103,4 +100,5 @@ public class UserManagementController {
         umService.delete(username);
         return "redirect:/user/list";
     }
+
 }

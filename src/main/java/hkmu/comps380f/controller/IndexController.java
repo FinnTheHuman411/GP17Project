@@ -1,11 +1,12 @@
 package hkmu.comps380f.controller;
 
-import hkmu.comps380f.dao.PhotoService;
+import hkmu.comps380f.dao.ImageService;
 import hkmu.comps380f.dao.UserManagementService;
+import hkmu.comps380f.exception.ImageNotFound;
 import hkmu.comps380f.exception.UserNotFound;
+import hkmu.comps380f.model.Image;
 import hkmu.comps380f.model.ImageUser;
 import jakarta.annotation.Resource;
-import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,11 +21,16 @@ public class IndexController {
     @Resource
     UserManagementService umService;
     @Resource
-    PhotoService pService;
+    ImageService pService;
+    @GetMapping("/")
+    public String homepage() {
+        return "redirect:/homepage";
+    }
 
-    @GetMapping({"/", "/index", "/list"})
+    @GetMapping(value = {"", "/homepage", "/index","/list"})
     public String list(ModelMap model) {
-        model.addAttribute("photoDatabase", pService.getPhotos());
+        model.addAttribute("photoDatabase", pService.getImages());
+        model.addAttribute("attchmentDatabase", pService.getAttachments());
         return "list";
     }
 
@@ -91,9 +97,29 @@ public class IndexController {
         }
     }
 
+    @GetMapping("/profile/{username}")
+    public String view(@PathVariable("username") String username, ModelMap model)
+            throws UserNotFound, IOException {
+        ImageUser user = umService.getPhotoUser(username);
+        model.addAttribute("username", username);
+        model.addAttribute("user", user);
+        model.addAttribute("photoDatabase", pService.getImagesByUsername(username));
+        return "userprofile";
+    }
+
+    @GetMapping("/view/{imageId}")
+    public String view(@PathVariable("imageId") long imageId,
+                       ModelMap model)
+            throws ImageNotFound {
+        Image image = pService.getImage(imageId);
+        model.addAttribute("imageId", imageId);
+        model.addAttribute("image", image);
+        return "view";
+    }
+
     @GetMapping("/register")
     public ModelAndView register() {
-        return new ModelAndView("register", "imageUser", new UserManagementController.Form());
+        return new ModelAndView("register", "photoUser", new UserManagementController.Form());
     }
 
     @PostMapping("/register")
@@ -102,16 +128,6 @@ public class IndexController {
         umService.createPhotoUser(form.getUsername(),
                 form.getPassword(), userRole, form.getPhone(), form.getEmail(), "");
         return "redirect:/login";
-    }
-
-    @GetMapping("/profile/{username}")
-    public String view(@PathVariable("username") String username, ModelMap model)
-            throws UserNotFound, IOException {
-        ImageUser user = umService.getPhotoUser(username);
-        model.addAttribute("username", username);
-        model.addAttribute("user", user);
-        model.addAttribute("photoDatabase", pService.getPhoto(username));
-        return "userprofile";
     }
 }
 

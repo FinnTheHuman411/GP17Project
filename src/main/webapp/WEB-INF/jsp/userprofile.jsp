@@ -41,11 +41,15 @@ ${user.description}
         </c:when>
         <c:otherwise>
             <c:forEach items="${photoDatabase}" var="image">
-                <td>
-                    <a href="<c:url value="/user/profile/${image.username}"></c:url>">
-                        <img src="data:image/png;base64,${fn:escapeXml(Base64.getEncoder().encodeToString(image.data))}" alt="Image" width="300" height="300"/>
-                    </a>
-                </td>
+                <c:forEach items="${image.attachments}" var="attachment" varStatus="status">
+                    <c:if test="${status.first}">
+                        <td>
+                            <a href="<c:url value="/view/${image.id}" />">
+                                <img src="data:image/png;base64,${fn:escapeXml(Base64.getEncoder().encodeToString(attachment.contents))}" alt="${attachment.name}" width="300" height="300"/>
+                            </a>
+                        <td>
+                    </c:if>
+                </c:forEach>
             </c:forEach>
         </c:otherwise>
     </c:choose>

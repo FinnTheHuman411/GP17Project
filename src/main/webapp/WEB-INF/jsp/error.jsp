@@ -10,7 +10,7 @@
     <input type="submit" value="Log out" />
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   </form>
-  <form action="<c:url value="/image/myprofile"/>">
+  <form action="<c:url value="/user/myprofile"/>">
     <input type="submit" value="My Profile" />
   </form>
 </security:authorize>
