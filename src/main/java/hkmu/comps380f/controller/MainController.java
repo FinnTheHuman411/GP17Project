@@ -2,6 +2,7 @@ package hkmu.comps380f.controller;
 
 import hkmu.comps380f.dao.ImageService;
 import hkmu.comps380f.dao.UserManagementService;
+import hkmu.comps380f.exception.AttachmentNotFound;
 import hkmu.comps380f.exception.CommentNotFound;
 import hkmu.comps380f.exception.ImageNotFound;
 import hkmu.comps380f.exception.UserNotFound;
@@ -12,6 +13,7 @@ import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -67,7 +69,7 @@ public class MainController {
     }
 
     @GetMapping("/profile/{username}")
-    public String view(@PathVariable("username") String username, ModelMap model)
+    public String userProfile(@PathVariable("username") String username, ModelMap model)
             throws UserNotFound, IOException {
         ImageUser user = umService.getPhotoUser(username);
         List<Comment> comments = pService.getCommentsByUser(username);
@@ -76,6 +78,14 @@ public class MainController {
         model.addAttribute("photoDatabase", pService.getImagesByUsername(username));
         model.addAttribute("comment", comments);
         return "userProfile";
+    }
+    @GetMapping("/profile/{username}/comhist")
+    public String userCommHist(@PathVariable("username") String username, ModelMap model)
+            throws IOException {
+        List<Comment> comments = pService.getCommentsByUser(username);
+        model.addAttribute("username", username);
+        model.addAttribute("comment", comments);
+        return "userCommentHist";
     }
 
     public static class descForm{
@@ -159,6 +169,10 @@ public class MainController {
         }
         pService.deleteComment(commentId);
         return "redirect:/view/" + imageId;
+    }
+    @ExceptionHandler({AttachmentNotFound.class, CommentNotFound.class, ImageNotFound.class, UserNotFound.class})
+    public ModelAndView error(Exception e) {
+        return new ModelAndView("error", "message", e.getMessage());
     }
 }
 

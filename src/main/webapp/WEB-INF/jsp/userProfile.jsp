@@ -42,6 +42,7 @@
 <h2> @${username} </h2>
 <i>Description: </i>${user.description}
 <br>
+[<a href="<c:url value="/profile/${username}/comhist" />">Comment History</a>]
 <security:authorize access="hasRole('ADMIN') or
                           (hasRole('USER') and principal.username=='${username}')">
     [<a href="<c:url value="/profile/${username}/editdesc" />">Edit</a>]
@@ -68,21 +69,5 @@
         </c:otherwise>
     </c:choose>
 </div>
-<hr>
-<h2>Comment History</h2>
-<c:choose>
-    <c:when test="${empty comment}">
-        <i>There are no comments from this user.</i>
-    </c:when>
-    <c:otherwise>
-        <ul>
-            <c:forEach items="${comment}" var="comment">
-                <li>${comment.text} [Post: ${comment.uploadTime}, Update: ${comment.updateTime}, From: #<a href="<c:url value="/view/${comment.imageId}" />">${comment.imageId}</a>]</li>
-                <br/>
-            </c:forEach>
-        </ul>
-    </c:otherwise>
-</c:choose>
-<br/><br/><br/><br/><br/>
 </body>
 </html>
