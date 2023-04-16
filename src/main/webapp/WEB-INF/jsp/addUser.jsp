@@ -1,11 +1,21 @@
 <!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head><title>Customer Support</title></head>
+<head><title>Photoblog User Management</title></head>
 <body>
 <c:url var="logoutUrl" value="/logout"/>
 <form action="${logoutUrl}" method="post">
-    <input type="submit" value="Log out"/>
+    <input type="submit" value="Log out" />
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+</form>
+<form action="<c:url value="/"/>">
+    <input type="submit" value="Homepage" />
+</form>
+<form action="<c:url value="/myprofile"/>">
+    <input type="submit" value="My Profile" />
+</form>
+<form action="<c:url value="/image/upload"/>">
+    <input type="submit" value="Upload" />
 </form>
 
 <h2>Create a User</h2>

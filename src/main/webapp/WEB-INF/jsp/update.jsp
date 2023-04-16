@@ -20,17 +20,17 @@
     <input type="submit" value="Upload" />
 </form>
 
-<h2>Upload</h2>
+<h2>Edit #${image.id}</h2>
 <form:form method="POST" enctype="multipart/form-data" modelAttribute="photoForm">
-    <b>Attachments</b><br/>
+    <b>Add more attachments</b><br/>
     <input type="file" name="attachments" multiple="multiple" accept="image/png, image/jpeg"/><br/><br/>
     <form:label path="title">Title</form:label><br/>
     <form:input type="text" path="title"/><br/><br/>
     <form:label path="description">Description</form:label><br/>
     <form:textarea path="description" rows="5" cols="30"/><br/><br/>
-    <input type="submit" value="Submit"/>
+    <input type="submit" value="Save"/>
 </form:form>
 <br>
-<a href="<c:url value="/" />">Cancel</a>
+<a href="<c:url value="/view/${image.id}" />">Cancel</a>
 </body>
 </html>

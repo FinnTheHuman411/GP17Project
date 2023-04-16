@@ -14,6 +14,8 @@ import java.util.List;
 public class UserManagementService {
     @Resource
     private ImageUserRepository puRepo;
+    @Resource
+    private ImageRepository pRepo;
 
     @Transactional
     public List<ImageUser> getPhotoUsers() {
@@ -31,12 +33,20 @@ public class UserManagementService {
     }
 
     @Transactional
+    public void updateDescription(String username, String Description){
+        ImageUser currUser = puRepo.findById(username).orElse(null);
+        currUser.setDescription(Description);
+        puRepo.save(currUser);
+    }
+
+    @Transactional
     public void delete(String username) {
         ImageUser imageUser = puRepo.findById(username).orElse(null);
         if (imageUser == null) {
             throw new UsernameNotFoundException("User '" + username + "' not found.");
         }
         puRepo.delete(imageUser);
+        pRepo.deleteByUsername(username);
     }
 
     @Transactional

@@ -18,6 +18,12 @@
         <input type="submit" value="Log out" />
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
+    <form action="<c:url value="/"/>">
+        <input type="submit" value="Homepage" />
+    </form>
+    <form action="<c:url value="/myprofile"/>">
+        <input type="submit" value="My Profile" />
+    </form>
     <form action="<c:url value="/image/upload"/>">
         <input type="submit" value="Upload" />
     </form>
@@ -27,11 +33,19 @@
     <form action="<c:url value="/login"/>">
         <input type="submit" value="Login" />
     </form>
+    <form action="<c:url value="/"/>">
+        <input type="submit" value="Homepage" />
+    </form>
 </security:authorize>
 
 
 <h2> @${username} </h2>
-${user.description}
+<i>Description: </i>${user.description}
+<br>
+<security:authorize access="hasRole('ADMIN') or
+                          (hasRole('USER') and principal.username=='${username}')">
+    [<a href="<c:url value="/profile/${username}/editdesc" />">Edit</a>]
+</security:authorize>
 
 <h2>Uploaded images</h2>
 <div>
@@ -54,5 +68,21 @@ ${user.description}
         </c:otherwise>
     </c:choose>
 </div>
+<hr>
+<h2>Comment History</h2>
+<c:choose>
+    <c:when test="${empty comment}">
+        <i>There are no comments from this user.</i>
+    </c:when>
+    <c:otherwise>
+        <ul>
+            <c:forEach items="${comment}" var="comment">
+                <li>${comment.text} [Post: ${comment.uploadTime}, Update: ${comment.updateTime}, From: #<a href="<c:url value="/view/${comment.imageId}" />">${comment.imageId}</a>]</li>
+                <br/>
+            </c:forEach>
+        </ul>
+    </c:otherwise>
+</c:choose>
+<br/><br/><br/><br/><br/>
 </body>
 </html>

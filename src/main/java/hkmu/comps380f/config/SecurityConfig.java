@@ -17,7 +17,7 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(authorize -> authorize
                     .requestMatchers("/user/**").hasRole("ADMIN")
-                    //.requestMatchers("/ticket/delete/**").hasRole("ADMIN")
+                    .requestMatchers("/image/delete/**").hasRole("ADMIN")
                     .requestMatchers("/image/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().permitAll()
             )

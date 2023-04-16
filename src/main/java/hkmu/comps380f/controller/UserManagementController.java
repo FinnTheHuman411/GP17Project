@@ -25,6 +25,11 @@ public class UserManagementController {
         return "listUser";
     }
 
+    @GetMapping("/create")
+    public ModelAndView create() {
+        return new ModelAndView("addUser", "imageUser", new Form());
+    }
+
     public static class Form {
         private String username;
         private String password;
@@ -81,11 +86,6 @@ public class UserManagementController {
         public void setEmail(String email) {
             this.email = email;
         }
-    }
-
-    @GetMapping("/create")
-    public ModelAndView create() {
-        return new ModelAndView("addUser", "photoUser", new Form());
     }
 
     @PostMapping("/create")

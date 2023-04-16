@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface ImageRepository extends JpaRepository<Image, Long> {
     List<Image> findByUsername(String username);
+    List<Image> deleteByUsername(String username);
 
 }

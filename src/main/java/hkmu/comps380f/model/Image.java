@@ -1,10 +1,13 @@
 package hkmu.comps380f.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,11 +19,20 @@ public class Image {
     private String username;
     private String title;
     private String description;
+    @CreationTimestamp
+    private Date uploadTime;
+    @UpdateTimestamp
+    private Date updateTime;
 
     @OneToMany(mappedBy = "image", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL, orphanRemoval = true)
     @Fetch(FetchMode.SUBSELECT)
     private List<Attachment> attachments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "image", fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL, orphanRemoval = true)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Comment> comments = new ArrayList<>();
 
     // getters and setters of all properties
     public long getId() {
@@ -66,6 +78,30 @@ public class Image {
     public void deleteAttachment(Attachment attachment) {
         attachment.setPhoto(null);
         this.attachments.remove(attachment);
+    }
+
+    public Date getUploadTime() {
+        return uploadTime;
+    }
+
+    public void setUploadTime(Date uploadTime) {
+        this.uploadTime = uploadTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
 
